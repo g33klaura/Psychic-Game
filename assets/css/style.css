@@ -1,0 +1,21 @@
+/* Google fonts (list in Evernote too)
+font-family: 'Butcherman', cursive;
+font-family: 'Walter Turncoat', cursive;
+*/
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	background-image: url("../images/bkgd_dirty_old_shirt.png");
+	color: white;
+}
+
+h1 {
+	font-family: 'Butcherman', cursive;
+	font-size: 48px;
+	color: red;
+}
+
+/* Hide the fun stuff before showing to a TA to ask about revealing the computer choice on page */
