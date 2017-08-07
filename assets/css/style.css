@@ -9,6 +9,7 @@ font-family: 'Walter Turncoat', cursive;
 
 body {
 	background-image: url("../images/bkgd_dirty_old_shirt.png");
+	font-family: 'Walter Turncoat', cursive;
 	color: white;
 }
 
@@ -18,4 +19,3 @@ h1 {
 	color: red;
 }
 
-/* Hide the fun stuff before showing to a TA to ask about revealing the computer choice on page */
