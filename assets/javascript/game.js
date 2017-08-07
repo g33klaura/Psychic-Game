@@ -16,35 +16,42 @@
 * 	b) If no match, Loss gets logged, 
 *			prompt lose, new round begins
 * WANT COMPUTER CHOICE TO SHOW ON PAGE NO MATTER WHAT before new round begins (computerReveal)
+* Display game over before new round starts
 */
 
 
 // Valid keyboard choices
-let choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-// Scoring storage
-let wins = 0;
-let losses = 0;
+// Variables for everything other than choices array
+var wins = 0;
+var losses = 0;
+var chancesLeft = 8;  //Use 8 for now, can change later
+var guessedLetters = [];
+var playerGuess = [];
+var computerChoice = [];
 
 
-// Still will need computerChoice, playerGuess, guessedLetters, chancesLeft, computerReveal
+// Still will need computerChoice, playerGuess, guessedLetters, computerReveal
 
 
 // Stores letter from user pressing key on keyboard
 
-    document.onkeyup = function() {
-        var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    document.onkeyup = function(event) {
+    	choices = event.key;
+        playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
 
         console.log(playerGuess);
     
     // Has computer choose from array choices
     // Needs to NOT pick new letter each time!!!!!!
 
-    	var computerChoice = choices[Math.floor(Math.random()*choices.length)];
+    	computerChoice = choices[Math.floor(Math.random()*choices.length)];
 
     	console.log(computerChoice);
+    }
 
 // Trying piece from jsfiddle, wtf does '$' mean in js??
-		$('body').append('<p>The computer chose: ' + computerChoice + '</p>');
+	/*	$('body').append('<p>The computer chose: ' + computerChoice + '</p>');
 
-    }
+    } */
