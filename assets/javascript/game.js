@@ -23,30 +23,50 @@ document.onkeyup = function(event) {
     	if (playerGuess === 'a' || playerGuess === 'b' || playerGuess === 'c' || playerGuess === 'd' || playerGuess === 'e' || playerGuess === 'f' || playerGuess === 'g' || playerGuess === 'h' || playerGuess === 'i' || playerGuess === 'j' || playerGuess === 'k' || playerGuess === 'l' || playerGuess === 'm' || playerGuess === 'n' || playerGuess === 'o' || playerGuess === 'p' || playerGuess === 'q' || playerGuess === 'r' || playerGuess === 's' || playerGuess === 't' || playerGuess === 'u' || playerGuess === 'v' || playerGuess === 'w' || playerGuess === 'x' || playerGuess === 'y' || playerGuess === 'z') {
     		
     		// for testing, then delete!!!!!
-    		console.log(playerGuess);
+    		console.log('You guessed: ' + playerGuess);
 
     		// in here count down chancesLeft-- and print lettersGuessed to html?????
     		console.log(chancesLeft--);
 
+    		// Letters get printed as they're selected, but lags by one letter..........
+
+    		document.getElementById('lettersGuessed').innerHTML = lettersGuessed;
+    		lettersGuessed.push(event.key);
+    		//console.log(lettersGuessed.push(playerGuess.join(', ')));
+    		//document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
+
     	} else {
     		alert('Hey dummy, choose a letter!');
     	}
-    
-    	
+     	
 
   // not working..............
   //  console.log(lettersGuessed.push(playerGuess));
 
+// Nothing resets the game yet
+/* 
+var reWriteStats = () => {
+
+}
+*/
+
 if (chancesLeft >= 0) {
   if (playerGuess === computerChoice) {
-  	console.log('You survived with ' + chancesLeft + ' chances to spare.');
+  	console.log('Well done. You survived with ' + chancesLeft + ' chances to spare.');
+  	console.log(wins++);
+  	// reWriteStats();
   } else {
-  	console.log('Nope');
+  	console.log('Nope.');
   }
 } else {
 	console.log('You\'re dead.');
+	console.log(losses++);
+	// reWriteStats();
+	// Reeeeally wanted creepy jigsaw laugh here *sad face*
 }
 }
+
+
 
 
     // Variable to store the scoring in html on page from rps
