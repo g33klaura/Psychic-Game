@@ -11,11 +11,29 @@ body {
 	background-image: url("../images/bkgd_dirty_old_shirt.png");
 	font-family: 'Walter Turncoat', cursive;
 	color: white;
+	margin: 50px;
 }
 
 h1 {
 	font-family: 'Butcherman', cursive;
-	font-size: 48px;
+	font-size: 60px;
 	color: red;
 }
 
+.not-heading {
+	position: relative;
+	top: 50px;
+}
+
+h2 {
+	font-size: 32px;
+}
+
+#instructions {
+	font-size: 22px;
+}
+
+#wish {
+	font-style: italic;
+	font-size: 16px;
+}
