@@ -19,8 +19,19 @@ var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 document.onkeyup = function(event) {
 	chancesLeft--;
     var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
-    // for testing, then delete!!!!!
-    console.log(playerGuess);
+    
+    	if (playerGuess === 'a' || playerGuess === 'b' || playerGuess === 'c' || playerGuess === 'd' || playerGuess === 'e' || playerGuess === 'f' || playerGuess === 'g' || playerGuess === 'h' || playerGuess === 'i' || playerGuess === 'j' || playerGuess === 'k' || playerGuess === 'l' || playerGuess === 'm' || playerGuess === 'n' || playerGuess === 'o' || playerGuess === 'p' || playerGuess === 'q' || playerGuess === 'r' || playerGuess === 's' || playerGuess === 't' || playerGuess === 'u' || playerGuess === 'v' || playerGuess === 'w' || playerGuess === 'x' || playerGuess === 'y' || playerGuess === 'z') {
+    		
+    		// for testing, then delete!!!!!
+    		console.log(playerGuess);
+
+    		// in here count down chancesLeft-- and print lettersGuessed to html?????
+
+    	} else {
+    		alert('Hey dummy, choose a letter!');
+    	}
+    
+    	
 
   // not working..............
   //  console.log(lettersGuessed.push(playerGuess));
@@ -56,14 +67,7 @@ if (chancesLeft > 0) {
         	document.getElementById('#game').textContent += lettersGuessed.toString('<p>Letters you\'ve guessed: </p>');
 			*/
 
-    // Put here? the limits on what's a letter vs not?
-    /*
-    if (playerGuess === [choices.indexOf]) {  //This isn't working...
-    	console.log(playerGuess);
-    } else {
-    	alert('Hey dummy, choose a letter!');
-    }
-    */
+	// Want it to not count letters already guessed
 
     // Needs a FOR loop, to determine how many times to allow guesses?????
 
