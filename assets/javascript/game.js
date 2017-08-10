@@ -27,32 +27,27 @@ document.onkeyup = function(event) {
     		// for testing, then delete!!!!!
     		console.log('You guessed: ' + playerGuess);
 
-    		// in here count down chancesLeft-- and print lettersGuessed to html?????
-
-    		console.log('You have ' + chancesLeft-- + ' chances left.');
-    		/*
-    		document.getElementById('chancesLeft').innerHTML = chancesLeft--;
-    		chancesLeft.push(event.key);
-			*/
+    		
 
     		// Letters get printed as they're selected, but lags by one letter..........
 
     		document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
     		lettersGuessed.push(event.key);
-    		//console.log(lettersGuessed.push(playerGuess.join(', ')));
-    		//document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
+    		
+    		// Want it to not count letters already guessed...
 
     	} else {
     		alert('Hey dummy, choose a letter!');
     	}
      	
 
-// Nothing resets the game yet
-
-var reWriteStats = () => {
+// Way to reset game
+function reWriteStats() {
 	chancesLeft = 9;
 	lettersGuessed = [];
 	// Something so computer picks a new letter?
+	// Make computerChoice a function so it'll reset?
+	// computerChoice();
 }
 
 
@@ -67,6 +62,11 @@ if (chancesLeft >= 0) {
   
   } else {
   	console.log('Nope.');
+  	console.log('You have ' + chancesLeft-- + ' chances left.');
+  	/*
+    document.getElementById('chancesLeft').innerHTML = chancesLeft--;
+    chancesLeft.push(event.key);
+	*/
   }
 
 } else {
@@ -81,9 +81,16 @@ if (chancesLeft >= 0) {
 
 
 
+/* Other things I've tried........
 
-    // Variable to store the scoring in html on page from rps
-    /*
+console.log(lettersGuessed.push(playerGuess.join(', ')));
+    		//document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
+
+Trying to get lettersGuessed to populate on the page
+        	lettersGuessed.push(playerGuess);
+        	document.getElementById('#game').textContent += lettersGuessed.toString('<p>Letters you\'ve guessed: </p>');
+
+// Variable to store the scoring in html on page from rps
          	var html = '<p>Press r (for rock), p (for paper), or s (for scissors) to start playing!</p>' +
          	"<p>Wins: " + wins + "</p>" +
          	"<p>Losses: " + losses + "</p>" +
@@ -92,15 +99,5 @@ if (chancesLeft >= 0) {
          	document.querySelector('#game').innerHTML = html;
 
         }
-    */
-
-// Other things I tried........
-
-    /*  Trying to get lettersGuessed to populate on the page
-        	lettersGuessed.push(playerGuess);
-        	document.getElementById('#game').textContent += lettersGuessed.toString('<p>Letters you\'ve guessed: </p>');
-			*/
-
-	// Want it to not count letters already guessed
-
+*/
 
