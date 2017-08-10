@@ -1,90 +1,122 @@
-/* Steps needed for the game part
- * Need variables for computerChoice, playerGuess, Wins, Losses, chancesLeft, guessedLetters, computerReveal
- * Computer chooses a letter
- *	- Keeps same letter for a number of playerGuess (a round)
- * User guesses a letter by pressing it on the keyboard
- * If valid letter:
- * 	a) Guessed letters are recorded on page
- * 	b) Guesses count against "number of guesses"
- * If invalid letter:
- * 	a) Prompt "not a letter!"
- * 	b) Doesn't count against number of guesses
- * If same letter already guessed, don't count against number of guesses
- * Their choice either a) matches computer choice, or b) doesn't match
- * 	a) If matches, Win gets logged, 
- *			prompt win, new round begins
- * 	b) If no match, Loss gets logged, 
- *			prompt lose, new round begins
- * WANT COMPUTER CHOICE TO SHOW ON PAGE NO MATTER WHAT before new round begins (computerReveal)
- * Display game over before new round starts
- */
-
-
-// Valid choices in array
+// Valid letter choices in array
 var choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 
-// Variables for everything other than choices array
+// Variables for everything else
 var wins = 0;
 var losses = 0;
-var chancesLeft = 8; //Use 8 for now, can change later
+var chances = 9;
+var chancesLeft = 9;
 
-var computerReveal = [];
+var lettersGuessed = [];
+var computerReveal = null;
 
-var guessedLetters = [];
+// Computer chooses letter from array options
+var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+	// for testing, then delete!!!!!
+	console.log(computerChoice);
 
-
-// Does this ENTIRE thing go in ONE function??
 
 // Stores letter from user pressing key on keyboard
 document.onkeyup = function(event) {
-        var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
-        	console.log(playerGuess);
+	chancesLeft--;
+    var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
+    // for testing, then delete!!!!!
+    console.log(playerGuess);
 
-        	guessedLetters.push(playerGuess)
-        	document.getElementById('#game').innerHTML = guessedLetters.toString('<p>Letters you\'ve guessed: </p>');
+    lettersGuessed.push(playerGuess);
+    updateChances();
+    updateLettersGuessed();
 
+    	if (chancesLeft > 0) {
+    		if (playerGuess === computerChoice) {
+    			wins++;
+    		//	document.getElementById('wins').innerHTML = wins;
+    			console.log('You won!');
+    			reset();
+    		}
+    	} else {
+    		losses++;
+    	//	document.getElementById('losses').innerHTML = losses;
+    		console.log('You\'ve died.');
+    		reset();
+    	}
 
-        	// Put here? the limits on what's a letter vs not?
-        	/*
-        	if (playerGuess === [choices.indexOf]) {  //This isn't working...
-        		console.log(playerGuess);
-        	} else {
-        		alert('Hey dummy, choose a letter!');
-        	}
-        	*/
-
-        // Has computer choose from array options
-        // Needs to NOT pick new letter each time!!!!!!
-
-        var computerGuess = choices[Math.floor(Math.random() * choices.length)];
-
-        console.log(computerGuess);
-
-// Needs a FOR loop, to determine how many times to allow guesses
-
-	//	for ()
+} 
 
 
-     	// Variable to store the scoring in html on page
-/*
-     	var html = '<p>Press r (for rock), p (for paper), or s (for scissors) to start playing!</p>' +
-     	"<p>Wins: " + wins + "</p>" +
-     	"<p>Losses: " + losses + "</p>" +
-     	"<p>Ties: " + ties + "</p>";
+// Update chances player has left on html
+var updateChances = function() {
+	document.getElementById('chancesLeft').innerHTML = htmlChances + chancesLeft;
+};
 
-     	document.querySelector('#game').innerHTML = html;
+// Computer chooses new letter on reset********
+var newComputerChoice = function() {
+	this.computerReveal = this.computerChoice[Math.floor(Math.random() * this.computerChoice.length)];
+};
 
+// Display guessed letters on html
+var updateLettersGuessed = function() {
+	document.getElementById('lettersGuessed').innerHTML = 'LETTERS YOU\'VE GUESSED: ' + lettersGuessed.join(', ');
+};
+
+
+newComputerChoice();
+updateChances();
+
+
+// Function to reset the game
+var resetGame = function() {
+	chances = 9;
+	chancesLeft = 9;
+	lettersGuessed = [];
+
+	updateChances();
+	newComputerChoice();
+	updateLettersGuessed();
+}
+
+var htmlChances = 'You have this many chances remaining: ';
+
+
+    // Variable to store the scoring in html on page
+    /*
+         	var html = '<p>Press r (for rock), p (for paper), or s (for scissors) to start playing!</p>' +
+         	"<p>Wins: " + wins + "</p>" +
+         	"<p>Losses: " + losses + "</p>" +
+         	"<p>Ties: " + ties + "</p>";
+
+         	document.querySelector('#game').innerHTML = html;
+
+        }
+    */
+
+
+
+
+
+// Trying piece from jsfiddle, wtf does '$' mean in js??
+/*	
+$('body').append('<p>The computer chose: ' + computerChoice + '</p>');
+
+    } 
+    If this is going at the very end of the function, the brace above will close it all out */
+
+// Other things I tried........
+
+    /*  Trying to get lettersGuessed to populate on the page
+        	lettersGuessed.push(playerGuess);
+        	document.getElementById('#game').textContent += lettersGuessed.toString('<p>Letters you\'ve guessed: </p>');
+			*/
+
+    // Put here? the limits on what's a letter vs not?
+    /*
+    if (playerGuess === [choices.indexOf]) {  //This isn't working...
+    	console.log(playerGuess);
+    } else {
+    	alert('Hey dummy, choose a letter!');
     }
-*/
+    */
 
-}  // Closes the whole function, starting at document.onkeyup
+    // Needs a FOR loop, to determine how many times to allow guesses
 
-
-
-
-
-
-        // Trying piece from jsfiddle, wtf does '$' mean in js??
-        /*	$('body').append('<p>The computer chose: ' + computerChoice + '</p>');
-
-    } */
+    //	for ()
