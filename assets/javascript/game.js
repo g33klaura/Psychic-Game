@@ -4,7 +4,7 @@ var choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 // Variables for everything else
 var wins = 0;
 var losses = 0;
-// var chances = 9;
+// var chances = 9; **do I need this variable?
 var chancesLeft = 9;
 
 var lettersGuessed = [];
@@ -17,7 +17,7 @@ var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 
 // Stores letter from user pressing key on keyboard
 document.onkeyup = function(event) {
-	chancesLeft--;
+	//chancesLeft--;
     var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
     
     	if (playerGuess === 'a' || playerGuess === 'b' || playerGuess === 'c' || playerGuess === 'd' || playerGuess === 'e' || playerGuess === 'f' || playerGuess === 'g' || playerGuess === 'h' || playerGuess === 'i' || playerGuess === 'j' || playerGuess === 'k' || playerGuess === 'l' || playerGuess === 'm' || playerGuess === 'n' || playerGuess === 'o' || playerGuess === 'p' || playerGuess === 'q' || playerGuess === 'r' || playerGuess === 's' || playerGuess === 't' || playerGuess === 'u' || playerGuess === 'v' || playerGuess === 'w' || playerGuess === 'x' || playerGuess === 'y' || playerGuess === 'z') {
@@ -26,6 +26,7 @@ document.onkeyup = function(event) {
     		console.log(playerGuess);
 
     		// in here count down chancesLeft-- and print lettersGuessed to html?????
+    		console.log(chancesLeft--);
 
     	} else {
     		alert('Hey dummy, choose a letter!');
@@ -36,9 +37,9 @@ document.onkeyup = function(event) {
   // not working..............
   //  console.log(lettersGuessed.push(playerGuess));
 
-if (chancesLeft > 0) {
+if (chancesLeft >= 0) {
   if (playerGuess === computerChoice) {
-  	console.log('You survived');
+  	console.log('You survived with ' + chancesLeft + ' chances to spare.');
   } else {
   	console.log('Nope');
   }
