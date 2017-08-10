@@ -50,6 +50,15 @@ function reWriteStats() {
 	// computerChoice();
 }
 
+// Create function to update parts of score? Then call function in if/else statement?
+function updateWins() {
+	document.getElementById('wins').innerHTML = 'WINS: ' + wins++;
+}
+
+function updateLosses(){
+	document.getElementById('losses').innerHTML = 'LOSSES: ' + losses++;
+}
+
 
 //Stats update but lag behind by 1. (starts wins at 0......)
 if (chancesLeft >= 0) {
@@ -57,7 +66,7 @@ if (chancesLeft >= 0) {
   	console.log('Well done. You survived with ' + chancesLeft + ' chances to spare.');
   	console.log('You\'ve won ' + wins++ + ' times.');
   	//document.getElementById('wins').innerHTML = wins++;
-
+  	updateWins();
   	reWriteStats();
   
   } else {
@@ -73,7 +82,7 @@ if (chancesLeft >= 0) {
 	console.log('You\'re dead.');
 	console.log('You\'ve died ' + losses++ + ' times.');
 	//document.getElementById('losses').innerHTML = losses++;
-    		
+    updateLosses();
 	reWriteStats();
 	// Reeeeally wanted creepy jigsaw laugh here *sad face*
 }

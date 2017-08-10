@@ -10,30 +10,34 @@ font-family: 'Walter Turncoat', cursive;
 body {
 	background-image: url("../images/bkgd_dirty_old_shirt.png");
 	font-family: 'Walter Turncoat', cursive;
-	color: white;
-	margin: 50px;
+	color: White;
+	margin-left: 50px;
 }
 
 h1 {
+	position: relative;
+	top: 50px;
 	font-family: 'Butcherman', cursive;
 	font-size: 60px;
-	color: red;
+	color: Red;
 }
 
 .not-heading {
 	position: relative;
-	top: 50px;
+	top: 70px;
 }
 
 h2 {
 	font-size: 32px;
-}
-
-#instructions {
-	font-size: 22px;
+	color: DarkRed;
 }
 
 #wish {
 	font-style: italic;
-	font-size: 16px;
+	font-size: 14px;
+}
+
+#game {
+	font-size: 32px;
+	color: Red;
 }

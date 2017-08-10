@@ -3,8 +3,8 @@
 <head>
 	
 <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-<!-- <link href="https://fonts.googleapis.com/css?family=Butcherman|Walter+Turncoat" rel="stylesheet"> -->
-<!-- <link rel="stylesheet" type="text/css" href="assets/css/style.css"> -->
+<link href="https://fonts.googleapis.com/css?family=Butcherman|Walter+Turncoat" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
 <title>Psychic Survival Game</title>
 
@@ -16,28 +16,34 @@
 <h1>Would you like to play a game?</h1>
 
 <!-- Image here -->
-
+<section class="not-heading">
 <h2>Guess what letter I'm thinking of... or die!</h2>
+
 <br>
 <p>Open the console to play this sweet console-only game < /sarcasm></p>
 <br>
-<p id="instructions">You have 9 chances to guess which letter I'm thinking of. Good luck.</p>
-<p>*Imagine animation of jigsaw puppet going by and being really creepy*</p>
+<br>
+<p>You have 9 chances to guess which letter I'm thinking of. Good luck.</p>
+<br>
+<p id="wish">*Imagine animation of jigsaw puppet going by and it being really creepy and awesome*</p>
 <!-- Hopefully figure out how to limit keys to only letters and display alert if other key is pressed -->
+<br>
 
-<div id="game">
-	<br>
 <!-- Scoring will go in here -->
-	<p id="lettersGuessed"> </p>
-	<p id="chancesLeft"> </p>
+<!-- Would be nice if spacing didn't jump -->
+<ul id="game">
+
+	<li id="lettersGuessed"> </li>
+	<li id="chancesLeft"> </li>
 	<br>
-	<p id="computerReveal"> </p>
+	<li id="computerReveal"> </li>
 <!-- Want this to reveal letter on win/out of guesses -->
 	<br>
-	<p id="wins"> </p>
-	<p id="losses"> </p>
+	<li id="wins"> </li>
+	<li id="losses"> </li>
+</ul>
+</section>
 
-</div>
 
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
