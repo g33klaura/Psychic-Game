@@ -4,7 +4,7 @@ var choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 // Variables for everything else
 var wins = 0;
 var losses = 0;
-var chances = 9;
+// var chances = 9;
 var chancesLeft = 9;
 
 var lettersGuessed = [];
@@ -15,7 +15,6 @@ var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 	// for testing, then delete!!!!!
 	console.log(computerChoice);
 
-
 // Stores letter from user pressing key on keyboard
 document.onkeyup = function(event) {
 	chancesLeft--;
@@ -23,62 +22,22 @@ document.onkeyup = function(event) {
     // for testing, then delete!!!!!
     console.log(playerGuess);
 
-    lettersGuessed.push(playerGuess);
-    updateChances();
-    updateLettersGuessed();
+  // not working..............
+  //  console.log(lettersGuessed.push(playerGuess));
 
-    	if (chancesLeft > 0) {
-    		if (playerGuess === computerChoice) {
-    			wins++;
-    		//	document.getElementById('wins').innerHTML = wins;
-    			console.log('You won!');
-    			reset();
-    		}
-    	} else {
-    		losses++;
-    	//	document.getElementById('losses').innerHTML = losses;
-    		console.log('You\'ve died.');
-    		reset();
-    	}
-
-} 
-
-
-// Update chances player has left on html
-var updateChances = function() {
-	document.getElementById('chancesLeft').innerHTML = htmlChances + chancesLeft;
-};
-
-// Computer chooses new letter on reset********
-var newComputerChoice = function() {
-	this.computerReveal = this.computerChoice[Math.floor(Math.random() * this.computerChoice.length)];
-};
-
-// Display guessed letters on html
-var updateLettersGuessed = function() {
-	document.getElementById('lettersGuessed').innerHTML = 'LETTERS YOU\'VE GUESSED: ' + lettersGuessed.join(', ');
-};
-
-
-newComputerChoice();
-updateChances();
-
-
-// Function to reset the game
-var resetGame = function() {
-	chances = 9;
-	chancesLeft = 9;
-	lettersGuessed = [];
-
-	updateChances();
-	newComputerChoice();
-	updateLettersGuessed();
+if (chancesLeft > 0) {
+  if (playerGuess === computerChoice) {
+  	console.log('You survived');
+  } else {
+  	console.log('Nope');
+  }
+} else {
+	console.log('You\'re dead.');
+}
 }
 
-var htmlChances = 'You have this many chances remaining: ';
 
-
-    // Variable to store the scoring in html on page
+    // Variable to store the scoring in html on page from rps
     /*
          	var html = '<p>Press r (for rock), p (for paper), or s (for scissors) to start playing!</p>' +
          	"<p>Wins: " + wins + "</p>" +
@@ -89,17 +48,6 @@ var htmlChances = 'You have this many chances remaining: ';
 
         }
     */
-
-
-
-
-
-// Trying piece from jsfiddle, wtf does '$' mean in js??
-/*	
-$('body').append('<p>The computer chose: ' + computerChoice + '</p>');
-
-    } 
-    If this is going at the very end of the function, the brace above will close it all out */
 
 // Other things I tried........
 
@@ -117,6 +65,6 @@ $('body').append('<p>The computer chose: ' + computerChoice + '</p>');
     }
     */
 
-    // Needs a FOR loop, to determine how many times to allow guesses
+    // Needs a FOR loop, to determine how many times to allow guesses?????
 
-    //	for ()
+ 	
