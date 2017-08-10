@@ -4,10 +4,12 @@ var choices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 
 // Variables for everything else
 var wins = 0;
 var losses = 0;
-// var chances = 9; **do I need this variable?
+
 var chancesLeft = 9;
 
 var lettersGuessed = [];
+
+// Want to show the computer choice when player loses
 var computerReveal = null;
 
 // Computer chooses letter from array options
@@ -26,11 +28,16 @@ document.onkeyup = function(event) {
     		console.log('You guessed: ' + playerGuess);
 
     		// in here count down chancesLeft-- and print lettersGuessed to html?????
-    		console.log(chancesLeft--);
+
+    		console.log('You have ' + chancesLeft-- + ' chances left.');
+    		/*
+    		document.getElementById('chancesLeft').innerHTML = chancesLeft--;
+    		chancesLeft.push(event.key);
+			*/
 
     		// Letters get printed as they're selected, but lags by one letter..........
 
-    		document.getElementById('lettersGuessed').innerHTML = lettersGuessed;
+    		document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
     		lettersGuessed.push(event.key);
     		//console.log(lettersGuessed.push(playerGuess.join(', ')));
     		//document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
@@ -40,28 +47,34 @@ document.onkeyup = function(event) {
     	}
      	
 
-  // not working..............
-  //  console.log(lettersGuessed.push(playerGuess));
-
 // Nothing resets the game yet
-/* 
+
 var reWriteStats = () => {
-
+	chancesLeft = 9;
+	lettersGuessed = [];
+	// Something so computer picks a new letter?
 }
-*/
 
+
+//Stats update but lag behind by 1. (starts wins at 0......)
 if (chancesLeft >= 0) {
   if (playerGuess === computerChoice) {
   	console.log('Well done. You survived with ' + chancesLeft + ' chances to spare.');
-  	console.log(wins++);
-  	// reWriteStats();
+  	console.log('You\'ve won ' + wins++ + ' times.');
+  	//document.getElementById('wins').innerHTML = wins++;
+
+  	reWriteStats();
+  
   } else {
   	console.log('Nope.');
   }
+
 } else {
 	console.log('You\'re dead.');
-	console.log(losses++);
-	// reWriteStats();
+	console.log('You\'ve died ' + losses++ + ' times.');
+	//document.getElementById('losses').innerHTML = losses++;
+    		
+	reWriteStats();
 	// Reeeeally wanted creepy jigsaw laugh here *sad face*
 }
 }
@@ -90,6 +103,4 @@ if (chancesLeft >= 0) {
 
 	// Want it to not count letters already guessed
 
-    // Needs a FOR loop, to determine how many times to allow guesses?????
 
- 	
