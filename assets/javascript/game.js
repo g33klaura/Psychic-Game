@@ -50,9 +50,9 @@ function reWriteStats() {
 	// Something so computer picks a new letter?
 	// Make computerChoice a function so it'll reset?
 	// computerChoice();
-}
 
-// New problem: not logging the win/loss until the 10th letter guess
+	// How to hide "Letter to guess" part til needed?......
+}
 
 
 //function updateScore() {
@@ -61,10 +61,13 @@ function reWriteStats() {
 function updateWins() {
 	wins++;
 	document.getElementById('wins').innerHTML = 'WINS: ' + wins;
-	// Add last computer choice to HTML 
+	alert('You survived.');
 	
+	// Add letter computer chose to HTML 
+	computerReveal = computerChoice;
+	document.getElementById('computerReveal').innerHTML = 'Letter to guess: ' + computerChoice;
 
-	// Computer makes new choice as part of this function (better practice to make it's own function next project)
+	// Computer makes new letter choice as part of this function (better practice to make it's own function next project)
 	 computerChoice = choices[Math.floor(Math.random() * choices.length)];
 	 console.log(computerChoice);
 }
@@ -72,11 +75,21 @@ function updateWins() {
 function updateLosses() {
 	losses++;
 	document.getElementById('losses').innerHTML = 'LOSSES: ' + losses;
+	alert('You died.');
+	
+	// Add letter computer chose to HTML 
+	computerReveal = computerChoice;
+	document.getElementById('computerReveal').innerHTML = 'Letter to guess: ' + computerChoice;
+
+	// Computer makes new letter choice
 	 computerChoice = choices[Math.floor(Math.random() * choices.length)];
 	 console.log(computerChoice);
 }
 
 //Stats update but lag behind by 1. (starts wins at 0......)  ~FIXED
+
+// New problem: not logging the win/loss until the 10th letter guess
+
 if (chancesLeft >= 0) {
   if (playerGuess === computerChoice) {
   	console.log('Well done. You survived with ' + chancesLeft + ' chances to spare.');
