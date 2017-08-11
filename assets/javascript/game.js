@@ -10,6 +10,7 @@ var chancesLeft = 9;
 var lettersGuessed = [];
 
 // Want to show the computer choice when player loses
+// THIS need to be part of a function, there the computerChoice gets stored. Then can be called
 var computerReveal = null;
 
 // Computer chooses letter from array options
@@ -17,9 +18,10 @@ var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 	// for testing, then delete!!!!!
 	console.log(computerChoice);
 
+
+
 // Stores letter from user pressing key on keyboard
 document.onkeyup = function(event) {
-	//chancesLeft--;
     var playerGuess = String.fromCharCode(event.keyCode).toLowerCase();
     
     	if (playerGuess === 'a' || playerGuess === 'b' || playerGuess === 'c' || playerGuess === 'd' || playerGuess === 'e' || playerGuess === 'f' || playerGuess === 'g' || playerGuess === 'h' || playerGuess === 'i' || playerGuess === 'j' || playerGuess === 'k' || playerGuess === 'l' || playerGuess === 'm' || playerGuess === 'n' || playerGuess === 'o' || playerGuess === 'p' || playerGuess === 'q' || playerGuess === 'r' || playerGuess === 's' || playerGuess === 't' || playerGuess === 'u' || playerGuess === 'v' || playerGuess === 'w' || playerGuess === 'x' || playerGuess === 'y' || playerGuess === 'z') {
@@ -27,13 +29,13 @@ document.onkeyup = function(event) {
     		// for testing, then delete!!!!!
     		console.log('You guessed: ' + playerGuess);
 
-    		
+    		chancesLeft--;
 
-    		// Letters get printed as they're selected, but lags by one letter..........
+    		// Letters get printed as they're selected, but lags by one letter..........  ~FIXED
+			lettersGuessed.push(event.key);
+    		document.getElementById('lettersGuessed').innerHTML = 'Letters you\'ve guessed: ' + lettersGuessed.join(', ');
+    		// Patrick suggestion- loop through letters, and add each letter to the lettersGuessed element on HTML,  with += (get rid of join)
 
-    		document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');
-    		lettersGuessed.push(event.key);
-    		
     		// Want it to not count letters already guessed...
 
     	} else {
@@ -50,45 +52,65 @@ function reWriteStats() {
 	// computerChoice();
 }
 
+// New problem: not logging the win/loss until the 10th letter guess
+
+
+//function updateScore() {
 // Create function to update parts of score? Then call function in if/else statement?
+
 function updateWins() {
-	document.getElementById('wins').innerHTML = 'WINS: ' + wins++;
+	wins++;
+	document.getElementById('wins').innerHTML = 'WINS: ' + wins;
+	// Add last computer choice to HTML 
+	
+
+	// Computer makes new choice as part of this function (better practice to make it's own function next project)
+	 computerChoice = choices[Math.floor(Math.random() * choices.length)];
+	 console.log(computerChoice);
 }
 
-function updateLosses(){
-	document.getElementById('losses').innerHTML = 'LOSSES: ' + losses++;
+function updateLosses() {
+	losses++;
+	document.getElementById('losses').innerHTML = 'LOSSES: ' + losses;
+	 computerChoice = choices[Math.floor(Math.random() * choices.length)];
+	 console.log(computerChoice);
 }
 
-
-//Stats update but lag behind by 1. (starts wins at 0......)
+//Stats update but lag behind by 1. (starts wins at 0......)  ~FIXED
 if (chancesLeft >= 0) {
   if (playerGuess === computerChoice) {
   	console.log('Well done. You survived with ' + chancesLeft + ' chances to spare.');
-  	console.log('You\'ve won ' + wins++ + ' times.');
+  	//console.log('You\'ve won ' + wins++ + ' times.');
   	//document.getElementById('wins').innerHTML = wins++;
+  	
   	updateWins();
+  	document.getElementById('wins').innerHTML = 'Times you\'ve survived: ' + wins;
+
   	reWriteStats();
   
   } else {
+
   	console.log('Nope.');
-  	console.log('You have ' + chancesLeft-- + ' chances left.');
-  	/*
-    document.getElementById('chancesLeft').innerHTML = chancesLeft--;
-    chancesLeft.push(event.key);
-	*/
+//  	console.log('You have ' + chancesLeft-- + ' chances left.');
+// Still need to get chances left displayed on HTML  ~FIXED
+	document.getElementById('chancesLeft').innerHTML = 'Chances you have left: ' + chancesLeft;
+
   }
 
 } else {
 	console.log('You\'re dead.');
-	console.log('You\'ve died ' + losses++ + ' times.');
-	//document.getElementById('losses').innerHTML = losses++;
+	
     updateLosses();
+	//console.log('You\'ve died ' + losses + ' times.');
+    document.getElementById('losses').innerHTML = 'Times you\'ve died: ' + losses;
+
 	reWriteStats();
+
 	// Reeeeally wanted creepy jigsaw laugh here *sad face*
 }
+//}
+
 }
-
-
 
 /* Other things I've tried........
 
@@ -108,5 +130,9 @@ Trying to get lettersGuessed to populate on the page
          	document.querySelector('#game').innerHTML = html;
 
         }
-*/
+
+ //Displays chances, but incriments by several.... damn that jigsaw
+ /*   document.getElementById('chancesLeft').innerHTML = 'Chances left: ' + chancesLeft--;
+ */
+    //chancesLeft.push(event.key);
 
