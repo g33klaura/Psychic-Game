@@ -18,7 +18,9 @@ var computerChoice = choices[Math.floor(Math.random() * choices.length)];
 	// for testing, then delete!!!!!
 	console.log(computerChoice);
 
-
+/* Sound would've been cool.... 
+var puppetLaugh = new sound('puppet_laugh.mp3');
+*/
 
 // Stores letter from user pressing key on keyboard
 document.onkeyup = function(event) {
@@ -52,6 +54,17 @@ function reWriteStats() {
 	// computerChoice();
 
 	// How to hide "Letter to guess" part til needed?......
+	computerReveal = null;
+	function hideShow() {
+		var x = document.getElementById('computerReveal');
+		if (x.style.display === 'none') {
+			x.style.display = 'block';
+		} else {
+			x.style.display = 'none';
+		}
+	}
+	//document.getElementById('computerReveal').style.display = 'block';
+	//document.getElementById('computerReveal').style.display = 'none';
 }
 
 
@@ -65,7 +78,8 @@ function updateWins() {
 	
 	// Add letter computer chose to HTML 
 	computerReveal = computerChoice;
-	document.getElementById('computerReveal').innerHTML = 'Letter to guess: ' + computerChoice;
+	document.getElementById('computerReveal').innerHTML = 'Letter I Chose: ' + computerChoice;
+
 
 	// Computer makes new letter choice as part of this function (better practice to make it's own function next project)
 	 computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -75,11 +89,15 @@ function updateWins() {
 function updateLosses() {
 	losses++;
 	document.getElementById('losses').innerHTML = 'LOSSES: ' + losses;
+
+	//puppetLaugh.play();
+
 	alert('You died.');
 	
 	// Add letter computer chose to HTML 
 	computerReveal = computerChoice;
-	document.getElementById('computerReveal').innerHTML = 'Letter to guess: ' + computerChoice;
+	document.getElementById('computerReveal').innerHTML = 'Letter I Chose: ' + computerChoice;
+	
 
 	// Computer makes new letter choice
 	 computerChoice = choices[Math.floor(Math.random() * choices.length)];
@@ -124,8 +142,11 @@ if (chancesLeft >= 0) {
 //}
 
 }
+// End of actual game code!!!
 
-/* Other things I've tried........
+
+
+/* Other things I'd tried........
 
 console.log(lettersGuessed.push(playerGuess.join(', ')));
     		//document.getElementById('lettersGuessed').innerHTML = lettersGuessed.join(', ');

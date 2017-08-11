@@ -41,3 +41,12 @@ h2 {
 	font-size: 32px;
 	color: Red;
 }
+
+img {
+	position: absolute;
+	float: right;
+	left: 600px;
+	-webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+	filter: FlipH;
+}
